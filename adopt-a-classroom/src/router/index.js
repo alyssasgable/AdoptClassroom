@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
+import Schools from '../views/Schools.vue'
+import Profile from '../views/Profile.vue'
+
 import firebase from 'firebase'
 
 Vue.use(VueRouter)
@@ -33,7 +36,23 @@ const routes = [
    path: '/sign-up',
    name: 'sign-up',
    component: SignUp
-}
+  },
+  {
+    path: '/schools',
+    name: 'schools',
+    component: Schools,
+    meta: {
+      requiresAuth: true
+   }
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
+    meta: {
+      requiresAuth: true
+   }
+  }
 ]
 
 const router = new VueRouter({

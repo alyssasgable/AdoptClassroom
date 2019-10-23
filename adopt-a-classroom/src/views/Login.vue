@@ -54,7 +54,7 @@ methods: {
             this.$router.replace('home');
          },
          (err) => {
-            alert("Oops. " + err.message)
+            alert("Oops. " + err.message);
 }
       )
    }

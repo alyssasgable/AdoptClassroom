@@ -2,7 +2,10 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Adopt A Classroom</h1>
-    <b-button @click="logout" variant="danger">Logout</b-button><br><br>
+    <div id="nav">
+      
+      <b-button @click="logout" variant="danger">Logout</b-button><br><br>
+    </div>
   </div>
 </template>
 
