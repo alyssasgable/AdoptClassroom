@@ -13,6 +13,9 @@
             <router-link to="schools">Schools</router-link>
          </b-nav-item>
          <b-nav-item>
+            <router-link to="profile">Volunteers</router-link>
+         </b-nav-item>
+         <b-nav-item>
             <router-link to="profile">My Profile</router-link>
          </b-nav-item>
 
@@ -22,24 +25,26 @@
    </b-navbar>
 
    <h1>Home</h1>
-   <b-button @click="addRequest" variant="outline-primary">+</b-button><br><br>
 
-<b-card v-for="(request, idx) in requests" :key="idx" img-src="https://placekitten.com/250/250" img-alt="Card image" img-left class="mb-3">
-    <h2>{{ request.title }}</h2>
-    <h4>{{ request.author_id }}</h4>
-    <b-link href="#" class="card-link">{{ request.organization }}</b-link>
+<b-button @click="addRequest" variant="outline-primary">+</b-button><br><br>
+   <div class="requests">
+      <b-card v-for="(request, idx) in requests" :key="idx" img-src="https://placekitten.com/250/250" img-alt="Card image" img-left class="mb-3">
+          <h2>{{ request.title }}</h2>
+          <h4>{{ request.author_name }}</h4>
+          <b-link href="#" class="card-link">{{ request.organization }}</b-link>
 
-    <b-card-text>
-       {{ request.description }}
-    </b-card-text>
+          <b-card-text>
+             {{ request.description }}
+          </b-card-text>
 
-    <b-card-text>
-       Posted {{ request.time_posted }}
-    </b-card-text>
+          <b-card-text>
+             Posted {{ request.time_posted }}
+          </b-card-text>
 
-    <b-button size="sm">Accept Request</b-button>
+          <b-button size="sm">Accept Request</b-button>
 
- </b-card>
+       </b-card>
+   </div>
 </div>
 </template>
 
@@ -71,3 +76,13 @@ export default {
    }
 }
 </script>
+
+<style scoped>
+.home {
+   text-align: center;
+}
+.requests {
+   width: 80%;
+   display: inline-block;
+}
+</style>

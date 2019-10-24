@@ -49,32 +49,33 @@ export default {
             number: '',
             organization: ''
          },
+         currentUserData: { },
          show: true
+      }
+},
+   firestore () {
+      const currentUser = firebase.auth().currentUser
+
+      return {
+         currentUserData: db.collection('users').doc(currentUser.uid)
       }
 },
    methods: {
       submitRequest: function() {
 
-         const currentUser = firebase.auth().currentUser
          var today = new Date();
+         // var date = (today.getMonth()+1)+'-'+today.getDate()+ "at" + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-         // const requestData = {
-         //    title: this.request.title,
-         //    description: this.request.description,
-         //    email: this.request.email,
-         //    number: this.request.number,
-         //    organization: this.request.organization,
-         //    author_id: currentUser.uid,
-         //    time_posted: today
-         // }
+         const currentUser = firebase.auth().currentUser
 
          db.collection('requests').add({
             title: this.request.title,
             description: this.request.description,
-            email: this.request.email,
-            number: this.request.number,
+            contactEmail: this.request.email,
+            contactNumber: this.request.number,
             organization: this.request.organization,
             author_id: currentUser.uid,
+            author_name: this.currentUserData.name,
             time_posted: today
          })
          .then(

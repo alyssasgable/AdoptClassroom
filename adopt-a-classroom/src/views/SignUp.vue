@@ -59,18 +59,22 @@ export default {
 methods: {
    signUp: function() {
 
-      const userData = {
-         email: this.form.email,
-         name: this.form.name,
-         number: this.form.number,
-         organization: this.form.organization,
-         role: this.form.role
-      }
+      // const userData = {
+      //    email: this.form.email,
+      //    name: this.form.name,
+      //    number: this.form.number,
+      //    organization: this.form.organization,
+      //    role: this.form.role
+      // }
 
       firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password).then(
             cred => {
             return db.collection('users').doc(cred.user.uid).set({
-               userData
+               email: this.form.email,
+               name: this.form.name,
+               number: this.form.number,
+               organization: this.form.organization,
+               role: this.form.role
             });
             },
             err => {
