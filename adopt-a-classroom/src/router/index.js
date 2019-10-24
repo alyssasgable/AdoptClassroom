@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import AddRequest from '../views/AddRequest.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Schools from '../views/Schools.vue'
@@ -23,6 +24,14 @@ const routes = [
     path: '/home',
     name: 'home',
     component: Home,
+    meta: {
+      requiresAuth: true
+   }
+  },
+  {
+    path: '/add-request',
+    name: 'add-request',
+    component: AddRequest,
     meta: {
       requiresAuth: true
    }
