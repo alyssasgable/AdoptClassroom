@@ -58,7 +58,17 @@ export default {
          const currentUser = firebase.auth().currentUser
          var today = new Date();
 
-         const requestData = {
+         // const requestData = {
+         //    title: this.request.title,
+         //    description: this.request.description,
+         //    email: this.request.email,
+         //    number: this.request.number,
+         //    organization: this.request.organization,
+         //    author_id: currentUser.uid,
+         //    time_posted: today
+         // }
+
+         db.collection('requests').add({
             title: this.request.title,
             description: this.request.description,
             email: this.request.email,
@@ -66,10 +76,6 @@ export default {
             organization: this.request.organization,
             author_id: currentUser.uid,
             time_posted: today
-         }
-
-         db.collection('requests').add({
-            requestData
          })
          .then(
             docRef => {

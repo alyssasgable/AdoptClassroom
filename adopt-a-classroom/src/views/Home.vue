@@ -24,18 +24,17 @@
    <h1>Home</h1>
    <b-button @click="addRequest" variant="outline-primary">+</b-button><br><br>
 
-   <b-card img-src="https://placekitten.com/250/250" img-alt="Card image" img-left class="mb-3">
-    <h2>Request Title</h2>
-    <h4>Joe Doe</h4>
-    <b-link href="#" class="card-link">Carver High School</b-link>
+<b-card v-for="(request, idx) in requests" :key="idx" img-src="https://placekitten.com/250/250" img-alt="Card image" img-left class="mb-3">
+    <h2>{{ request.title }}</h2>
+    <h4>{{ request.author_id }}</h4>
+    <b-link href="#" class="card-link">{{ request.organization }}</b-link>
 
     <b-card-text>
-       Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-       content.
+       {{ request.description }}
     </b-card-text>
 
     <b-card-text>
-       Posted Oct 23, 2019
+       Posted {{ request.time_posted }}
     </b-card-text>
 
     <b-button size="sm">Accept Request</b-button>
@@ -46,9 +45,20 @@
 
 <script>
 import firebase from 'firebase'
+import { db } from '../main';
 
 export default {
    name: 'home',
+   data() {
+      return {
+      requests: []
+    }
+   },
+   firestore () {
+      return {
+      requests: db.collection('requests')
+      }
+   },
    methods: {
       logout: function() {
          firebase.auth().signOut().then(() => {
