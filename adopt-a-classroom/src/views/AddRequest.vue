@@ -15,11 +15,11 @@
                  max-rows="6"
                ></b-form-textarea>
          </b-form-group>
-         <b-form-group id="input-group-3" label="Email address:" label-for="input-3" description="Please share the email address you would like volunteers to contact you by.">
+         <b-form-group id="input-group-3" label="Contact Email address:" label-for="input-3" description="Please share the email address you would like volunteers to contact you by.">
             <b-form-input id="input-3" v-model="request.email" label-for="input-3" required placeholder="Enter Email Addresss"></b-form-input>
          </b-form-group>
 
-         <b-form-group id="input-group-4" label="Phone Number" label-for="input-4" description="Please enter your best contact phone number.">
+         <b-form-group id="input-group-4" label="Contact Phone Number" label-for="input-4" description="Please enter your best contact phone number.">
             <b-form-input id="input-4" v-model="request.number" label-for="input-4" required placeholder="Phone Number"></b-form-input>
          </b-form-group>
 

@@ -1,7 +1,7 @@
 <template>
 <div class="Register">
    <div class="register-form">
-      <b-form @submit="signUp" v-if="show">
+      <b-form  v-if="show">
          <b-form-group id="input-group-3" label="Name" label-for="input-3" description="Please enter your full name.">
             <b-form-input id="input-1" v-model="form.name" label-for="input-3" required placeholder="Full Name"></b-form-input>
          </b-form-group>
@@ -25,7 +25,7 @@
             <b-form-input id="input-5" v-model="form.organization" required label-for="input-8" placeholder="School/Company"></b-form-input>
          </b-form-group>
 
-         <b-button type="submit" variant="primary">Submit</b-button><br><br>
+         <b-button type="button" @click="signUp" variant="primary">Submit</b-button><br><br>
          <p>Or go back to <router-link to="/login">login.</router-link></p>
       </b-form>
    </div>
@@ -75,15 +75,18 @@ methods: {
                number: this.form.number,
                organization: this.form.organization,
                role: this.form.role
+            }).then( () => {
+               alert("You're account has been created successfully!")
+               this.$router.replace('home')
+            },
+            err => {
+               alert('Oops. ' + err.message);
             });
             },
             err => {
                alert('Oops. ' + err.message);
-            }).then( () => {
-               alert("You're account has been created successfully!")
-               this.$router.replace('home')
-            });
-            }
+            })
+      }
       }
 }
 </script>
