@@ -76,7 +76,8 @@ methods: {
          email: newUserData.email,
          name: newUserData.name,
          number: newUserData.number,
-         organization: newUserData.organization
+         organization: newUserData.organization,
+         role: newUserData.role
       })
       .then(function() {
          alert("Your profile has been updated successfully!");

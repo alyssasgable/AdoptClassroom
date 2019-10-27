@@ -59,7 +59,7 @@ export default {
    },
    firestore () {
       return {
-      volunteers: db.collection('users').where("role", "==", "volunteer")
+      volunteers: db.collection('users').where("role", "==", "Volunteer")
       }
    },
    methods: {
