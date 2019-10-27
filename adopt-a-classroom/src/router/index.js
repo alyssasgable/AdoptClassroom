@@ -5,6 +5,7 @@ import AddRequest from '../views/AddRequest.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Schools from '../views/Schools.vue'
+import Volunteers from '../views/Volunteers.vue'
 import Profile from '../views/Profile.vue'
 
 import firebase from 'firebase'
@@ -50,6 +51,14 @@ const routes = [
     path: '/schools',
     name: 'schools',
     component: Schools,
+    meta: {
+      requiresAuth: true
+   }
+  },
+  {
+    path: '/volunteers',
+    name: 'volunteers',
+    component: Volunteers,
     meta: {
       requiresAuth: true
    }

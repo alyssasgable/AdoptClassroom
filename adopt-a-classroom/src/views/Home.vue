@@ -13,7 +13,7 @@
             <router-link to="schools">Schools</router-link>
          </b-nav-item>
          <b-nav-item>
-            <router-link to="profile">Volunteers</router-link>
+            <router-link to="volunteers">Volunteers</router-link>
          </b-nav-item>
          <b-nav-item>
             <router-link to="profile">My Profile</router-link>

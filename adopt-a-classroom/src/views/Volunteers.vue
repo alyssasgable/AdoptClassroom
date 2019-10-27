@@ -1,5 +1,5 @@
 <template>
-<div class="schools">
+<div class="volunteers">
    <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -24,19 +24,21 @@
 
    </b-navbar>
 
-   <h1>Schools</h1>
+   <h1>Volunteers</h1>
 
    <b-button @click="addRequest" variant="outline-primary">+</b-button><br><br>
 
-      <div class="school">
-         <b-card v-for="(school, idx) in schools" :key="idx" :img-src="school.photoURL" img-alt="Card image" img-left class="mb-3">
-             <h2>{{ school.title }}</h2>
-             <h4>{{ school.address}}</h4>
-             <b-link href="#" class="card-link">{{ school.phoneNumber }}</b-link>
+      <div class="volunteer">
+         <b-card v-for="(volunteer, idx) in volunteers" :key="idx" :img-src="volunteer.photoURL" img-alt="Card image" img-left class="mb-3">
+             <h2>{{ volunteer.name }}</h2>
+             <h4>{{ volunteer.organization}}</h4>
+             <b-link href="#" class="card-link">{{ volunteer.number }}</b-link>
+             <br><br>
+             <h2>Skills</h2>
 
-             <b-card-text>
-                {{ school.description }}
-             </b-card-text>
+             <b-list-group class="skills" v-for="(skill, idx) in volunteer.skills" :key="idx" >
+               <b-list-group-item>{{ skill }}</b-list-group-item>
+            </b-list-group>
 
              <b-button size="sm">Contact School</b-button>
           </b-card>
@@ -49,15 +51,15 @@ import firebase from 'firebase'
 import { db } from '../main';
 
 export default {
-   name: 'schools',
+   name: 'volunteers',
    data() {
       return {
-      schools: []
+      volunteers: []
     }
    },
    firestore () {
       return {
-      schools: db.collection('schools')
+      volunteers: db.collection('users').where("role", "==", "volunteer")
       }
    },
    methods: {
@@ -74,11 +76,16 @@ export default {
 </script>
 
 <style scoped>
-.schools {
+.volunteers {
    text-align: center;
 }
-.school {
+.volunteer {
    width: 80%;
+   display: inline-block;
+}
+
+.skills {
+   width: 50%;
    display: inline-block;
 }
 </style>
