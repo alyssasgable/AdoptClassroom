@@ -46,6 +46,24 @@
          <b-button type="button" @click="updateUser" variant="primary">Update</b-button><br><br>
       </b-form>
    </div>
+   <h1>My Requests</h1>
+
+   <div class="requests">
+      <b-card v-for="(request, idx) in requests" :key="idx" img-src="https://placekitten.com/250/250" img-alt="Card image" img-left class="mb-3">
+          <h2>{{ request.title }}</h2>
+          <h4>{{ request.author_name }}</h4>
+          <b-link href="#" class="card-link">{{ request.organization }}</b-link>
+
+          <b-card-text>
+             {{ request.description }}
+          </b-card-text>
+
+          <b-card-text>
+             Posted {{ request.time_posted }}
+          </b-card-text>
+
+       </b-card>
+</div>
 </div>
 </template>
 
@@ -58,13 +76,17 @@ export default {
       data() {
          return {
             user: {},
-            show: true
+            show: true,
+            requests: []
          }
 },
 firestore () {
    const userId = firebase.auth().currentUser.uid
    return {
-      user: db.collection('users').doc(userId)
+      user: db.collection('users').doc(userId),
+      requests: db.collection("requests")
+               .where("author_id", "==", "c7ShvOGgxkUA1Y1JGQrYh59AWuy2")
+
    }
 },
 methods: {
@@ -93,6 +115,11 @@ methods: {
 }
 .profile-form {
    width: 80%;
+   display: inline-block;
+}
+
+.requests {
+   width: 70%;
    display: inline-block;
 }
 </style>
