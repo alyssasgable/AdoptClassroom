@@ -1,6 +1,9 @@
 <template>
 <div class="login">
    <div class="login-form">
+      <b-img height="150px" width="150px" :src="images.logo" alt="Icon of Logo"></b-img>
+      <h1>Login</h1>
+
       <b-form  v-if="show">
          <b-form-group id="input-group-1" label="Email address:" label-for="input-1" description="">
             <b-form-input id="input-1" v-model="form.email" label-for="input-1" placeholder="Enter Email Addresss"></b-form-input>
@@ -12,9 +15,12 @@
 
          <b-button type="button" @click="login" variant="primary">Submit</b-button><br><br>
          <b-button type="reset" variant="danger">Reset Password</b-button><br><br>
-         <p>Don't have an account? Sign up for one <router-link to="/sign-up">here.</router-link></p>
       </b-form>
+
    </div>
+   <b-jumbotron header="Don't have an account?" lead="">
+      <h3>Sign up for one <router-link to="/sign-up">here.</router-link></h3>
+   </b-jumbotron>
 </div>
 </template>
 
@@ -25,6 +31,9 @@ export default {
   data() {
    // name: 'login'
    return {
+      images: {
+         logo: require('@/assets/img/logo.png')
+      },
       form: {
          email: '',
          password: '',

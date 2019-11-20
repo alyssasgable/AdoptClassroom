@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Welcome from '../views/Welcome.vue'
 import Home from '../views/Home.vue'
 import AddRequest from '../views/AddRequest.vue'
 import Login from '../views/Login.vue'
@@ -15,11 +16,11 @@ Vue.use(VueRouter)
 const routes = [
    {
      path: '*',
-     redirect: '/login',
+     redirect: '/welcome',
    },
    {
      path: '/',
-     redirect: '/login',
+     redirect: '/welcome',
    },
   {
     path: '/home',
@@ -36,6 +37,14 @@ const routes = [
     meta: {
       requiresAuth: true
    }
+  },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: Welcome,
+    meta: {
+      requiresAuth: false
+    }
   },
   {
     path: '/login',

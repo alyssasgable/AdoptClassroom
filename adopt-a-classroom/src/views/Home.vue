@@ -3,23 +3,36 @@
    <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
-      <b-navbar-brand>Adopt A Classroom</b-navbar-brand>
+      <b-navbar-brand>
+         <b-img height="50px" width="50px" :src="images.logo" alt="Icon of Book"></b-img>
+         <br>
+         <router-link to="welcome">Adopt A Classroom</router-link>
+      </b-navbar-brand>
 
       <b-navbar-nav>
          <b-nav-item>
-            <router-link to="home">Home</router-link>
+            <b-img height="50px" width="50px" :src="images.book" alt="Icon of Book"></b-img>
+            <br>
+            <router-link to="home">Requests</router-link>
          </b-nav-item>
+
          <b-nav-item>
+            <b-img height="50px" width="50px" :src="images.school" alt="Icon of Book"></b-img>
+            <br>
             <router-link to="schools">Schools</router-link>
          </b-nav-item>
          <b-nav-item>
+            <b-img height="50px" width="50px" :src="images.volunteer" alt="Icon of Book"></b-img>
+            <br>
             <router-link to="volunteers">Volunteers</router-link>
          </b-nav-item>
          <b-nav-item>
+            <b-img height="50px" width="50px" :src="images.profile" alt="Icon of Book"></b-img>
+            <br>
             <router-link to="profile">My Profile</router-link>
          </b-nav-item>
 
-         <b-button @click="logout" variant="danger">Logout</b-button><br><br>
+         <b-button @click="logout" class="logout" variant="danger">Logout</b-button><br><br>
       </b-navbar-nav>
 
    </b-navbar>
@@ -56,7 +69,15 @@ export default {
    name: 'home',
    data() {
       return {
-      requests: []
+      requests: [],
+      images: {
+         book: require('@/assets/img/book.png'),
+         lightBulb: require('@/assets/img/lightBulb.png'),
+         profile: require('@/assets/img/profile.png'),
+         school: require('@/assets/img/school.png'),
+         volunteer: require('@/assets/img/volunteer.png'),
+         logo: require('@/assets/img/logo.png')
+      }
     }
    },
    firestore () {
@@ -84,5 +105,11 @@ export default {
 .requests {
    width: 80%;
    display: inline-block;
+}
+
+.logout {
+   height: 50%;
+   margin: 5% auto;
+   float: right;
 }
 </style>

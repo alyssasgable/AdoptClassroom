@@ -1,6 +1,9 @@
 <template>
 <div class="Register">
    <div class="register-form">
+      <b-img height="150px" width="150px" :src="images.logo" alt="Icon of Logo"></b-img>
+      <h1>Sign Up</h1>
+
       <b-form  v-if="show">
          <b-form-group id="input-group-3" label="Name" label-for="input-3" description="Please enter your full name.">
             <b-form-input id="input-1" v-model="form.name" label-for="input-3" required placeholder="Full Name"></b-form-input>
@@ -26,9 +29,13 @@
          </b-form-group>
 
          <b-button type="button" @click="signUp" variant="primary">Submit</b-button><br><br>
-         <p>Or go back to <router-link to="/login">login.</router-link></p>
+
       </b-form>
    </div>
+
+      <b-jumbotron header="" lead="">
+         <h3>Or go back to <router-link to="/login">login.</router-link></h3>
+      </b-jumbotron>
 </div>
 </template>
 
@@ -40,6 +47,9 @@ export default {
       name: 'signUp',
       data() {
          return {
+            images: {
+               logo: require('@/assets/img/logo.png')
+            },
             form: {
                email: '',
                password: '',

@@ -14,6 +14,7 @@ Vue.use(firestorePlugin)
 
 let app = ''
 
+//will need to regenerate and put this in a git ignore file before pushed to prod
 var firebaseConfig = {
   apiKey: "AIzaSyBPCHfh2W13zqFySdx5Q6VzC6P3-bMAEl8",
   authDomain: "adoptaclassroom-54d87.firebaseapp.com",
