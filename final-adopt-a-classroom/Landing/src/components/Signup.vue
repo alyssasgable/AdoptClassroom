@@ -120,32 +120,36 @@ export default {
   methods: {
      signUp: function() {
 
-        firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password).then(
-           cred => {
+        if (this.form.isTeacher && !this.form.email.endsWith('@mps.k12.al.us') ) {
+           alert("Sign up with your @mps.k12.al.us email address. Please contact us if your school domain is not available.")
+        } else {
+           firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password).then(
+              cred => {
 
-           return db.collection('users').doc(cred.user.uid).set({
-              email: this.form.email,
-              name: this.form.name,
-              number: this.form.number,
-              isTeacher: this.form.isTeacher,
-              school: this.form.school,
-              subject: this.form.subject,
-              company: this.form.company,
-              skills: this.form.skills
-           }).then( () => {
-              alert(cred.user.uid)
-              alert("You're account has been created successfully!")
-              // this.$router.replace('home')
-           },
-           err => {
-              alert('Oops. ' + err.message);
-           });
-           },
+              return db.collection('users').doc(cred.user.uid).set({
+                 email: this.form.email,
+                 name: this.form.name,
+                 number: this.form.number,
+                 isTeacher: this.form.isTeacher,
+                 school: this.form.school,
+                 subject: this.form.subject,
+                 company: this.form.company,
+                 skills: this.form.skills
+              }).then( () => {
+                 alert("You're account has been created successfully!")
+                 this.$router.replace('home')
+              },
               err => {
                  alert('Oops. ' + err.message);
-              })
+              });
+              },
+                 err => {
+                    alert('Oops. ' + err.message);
+                 })
+           }
+           }
         }
-        }
+
 }
 </script>
 

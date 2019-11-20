@@ -23,11 +23,6 @@
                         <li class="nav-item">
                             <a class="nav-link"><router-link to="/profile">Profile</router-link></a>
                         </li>
-                        <li class="nav-item">
-                            <!-- <a href="/login" class="nav-link">Login</a> -->
-                            <a class="nav-link"><router-link to="/login">Login</router-link></a>
-
-                        </li>
                     </ul>
                     <div class="nav-button ml-auto">
                         <ul class="nav navbar-nav navbar-right">

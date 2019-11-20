@@ -16,7 +16,7 @@
                                         <div class="p-3">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="username">Email</label>
+                                                    <label for="email">Email</label>
                                                     <input type="text" v-model="form.email" class="form-control" id="email" placeholder="Enter email address">
                                                 </div>
 
@@ -30,7 +30,7 @@
                                                 </div>
 
                                                 <div class="mt-4 mb-0 text-center">
-                                                    <a href="/forgot-password" class="text-dark"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                                    <router-link to="forgot-password"><a href="/forgot-password" class="text-dark"><i class="mdi mdi-lock"></i> Forgot your password?</a></router-link>
                                                 </div>
 
                                                 <div class="mt-4 mb-0 text-center">

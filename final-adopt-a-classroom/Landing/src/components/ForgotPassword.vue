@@ -10,7 +10,7 @@
                                 <div class="card account-card">
                                     <div class="card-body">
                                         <div class="text-center mt-3">
-                                            <h3 class="font-weight-bold"><a href="/" class="text-dark text-uppercase account-pages-logo">Dorsin</a></h3>
+                                            <h3 class="font-weight-bold"><a href="/" class="text-dark text-uppercase account-pages-logo">Adopt A Classroom</a></h3>
                                             <p class="text-muted">Reset Password</p>
                                         </div>
                                         <div class="p-3">
@@ -20,11 +20,11 @@
                                             <form>
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="password" class="form-control" id="email" placeholder="Enter Email">
+                                                    <input v-model="form.email" type="email" class="form-control" id="email" placeholder="Enter Email">
                                                 </div>
 
                                                 <div class="mt-3">
-                                                    <button type="submit" class="btn btn-custom btn-block">Reset your Password</button>
+                                                    <button type="submit" @click="forgot" class="btn btn-custom btn-block">Reset your Password</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -46,11 +46,30 @@
 <script>
 "use strict";
 import HomeButton from './Elements/HomeButton'
+import firebase from 'firebase'
 
 export default {
   name: 'ForgotPassword',
   components: {
       HomeButton
+  },
+  data() {
+   return {
+     form: {
+       email: ''
+    }
+  }
+  },
+  methods: {
+   forgot: function() {
+      firebase.auth().sendPasswordResetEmail(this.form.email).then(
+         () => {
+            alert("An email has been sent to your inbox to reset your password.")
+            this.$router.replace('login');
+         }).catch((error) => {
+            alert(error)
+    })
+   }
   }
 }
 </script>
