@@ -4,7 +4,8 @@
             <div class="container">
                 <!-- LOGO -->
                 <a class="navbar-brand logo text-uppercase" href="/">
-                   <img src="@/assets/logo2.png" width="65%" height="35%" alt="Adopt A Classroom Logo">
+                   <!-- <img src="@/assets/logo.png" width="65%" height="35%" alt="Adopt A Classroom Logo"> -->
+                  <h1>Apple Core</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="mdi mdi-menu"></i>
