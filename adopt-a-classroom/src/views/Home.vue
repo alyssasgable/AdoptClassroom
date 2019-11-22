@@ -63,6 +63,7 @@
 
 <script>
 import firebase from 'firebase'
+import firestore from 'firestore'
 import { db } from '../main';
 
 export default {

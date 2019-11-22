@@ -2,7 +2,7 @@
     <div id="home1">
         <navbar></navbar>
 
-        <Request></Request/>
+        <Request :currentUser="currentUser"></Request/>
 
     </div>
 
@@ -29,6 +29,8 @@ import FooterSection from './Elements/FooterSection.vue'
 import FooterAlter from './Elements/FooterAlter.vue'
 import Switcher from './Elements/Switcher.vue'
 
+// const firebase = require('@/firebase.js');
+
 export default {
   name: 'Home',
   components: {
@@ -50,6 +52,7 @@ export default {
     FooterAlter,
     Switcher
   }
+
 }
 
 </script>

@@ -5,6 +5,7 @@ import Register from '@/components/Signup'
 import ForgotPassword from '@/components/ForgotPassword'
 import Home2 from '@/components/Home2'
 import Home from '@/components/Home'
+import AddRequest from '@/components/AddRequest'
 
 import firebase from 'firebase'
 
@@ -27,6 +28,14 @@ const routes = [
             meta: {
               requiresAuth: true
             }
+        },
+        {
+           path: '/add-request',
+           name: 'AddRequest',
+           component: AddRequest,
+           meta: {
+             requiresAuth: true
+           }
         },
         {
             path: '/login',
@@ -53,7 +62,7 @@ router.beforeEach((to, from, next) => {
    const currentUser = firebase.auth().currentUser
    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
-   if (requiresAuth && !currentUser) next('/welcome')
+   if (requiresAuth && !currentUser) next('/login')
    else if (!requiresAuth && currentUser) next('/home')
    else next()
 })

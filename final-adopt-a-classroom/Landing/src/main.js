@@ -14,24 +14,35 @@ import Home8 from '@/components/Home8'
 import Home9 from '@/components/Home9'
 
 import * as firebase from "firebase";
+import moment from 'moment'
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBPCHfh2W13zqFySdx5Q6VzC6P3-bMAEl8",
+//   authDomain: "adoptaclassroom-54d87.firebaseapp.com",
+//   databaseURL: "https://adoptaclassroom-54d87.firebaseio.com",
+//   projectId: "adoptaclassroom-54d87",
+//   storageBucket: "adoptaclassroom-54d87.appspot.com",
+//   messagingSenderId: "857635720340",
+//   appId: "1:857635720340:web:825a091e882472527cb881",
+//   measurementId: "G-86ME9S3KWV"
+// };
+//
+// if (!firebase.apps.length) {
+//    firebase.initializeApp(firebaseConfig);
+// }
+// export const db = firebase.firestore()
 
 Vue.config.productionTip = false
 // Vue.use(VueRouter)
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBPCHfh2W13zqFySdx5Q6VzC6P3-bMAEl8",
-  authDomain: "adoptaclassroom-54d87.firebaseapp.com",
-  databaseURL: "https://adoptaclassroom-54d87.firebaseio.com",
-  projectId: "adoptaclassroom-54d87",
-  storageBucket: "adoptaclassroom-54d87.appspot.com",
-  messagingSenderId: "857635720340",
-  appId: "1:857635720340:web:825a091e882472527cb881",
-  measurementId: "G-86ME9S3KWV"
-};
+// Vue.use(firebase)
+import { firestorePlugin } from 'vuefire'
 
-firebase.initializeApp(firebaseConfig);
+Vue.use(firestorePlugin)
 
-export const db = firebase.firestore();
+Vue.prototype.moment = moment
+
+let app = ''
 
 const routes = {
     '/': Home2,
@@ -48,7 +59,9 @@ const routes = {
     '/home-9': Home9
 }
 
-new Vue({
+firebase.auth().onAuthStateChanged(() => {
+if (!app) {
+app = new Vue({
   data: {
     currentRoute: window.location.pathname,
     currentTheme: 'red',
@@ -192,3 +205,6 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#dorsionApp')
+
+}
+})
