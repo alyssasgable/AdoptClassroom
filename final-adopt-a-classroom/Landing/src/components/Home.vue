@@ -2,7 +2,7 @@
     <div id="home1">
         <navbar></navbar>
 
-        <Request :currentUser="currentUser"></Request/>
+        <Request></Request>
 
     </div>
 

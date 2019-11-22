@@ -4,14 +4,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
+
                         <h1 class="section-title text-center">Requests</h1>
 
                         <div class="section-title-border margin-t-20"></div>
                         <br>
-                        <router-link to="add-request" v-if="currentUser.isTeacher">
+                     <div v-if="currentUser.isTeacher">
+                        <router-link to="add-request">
                            <button type="button" class="btn btn-custom btn-block">Add Request</button>
                         </router-link>
+                     </div>
                     </div>
+
                 </div>
 
                 <div class="row margin-t-30">
@@ -34,7 +38,6 @@
                                      <div class="mt-3" v-if="!currentUser.isTeacher">
                                           <a class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                                           </a>
-
                                      </div>
 
                                </div>
@@ -67,39 +70,39 @@ export default {
 async mounted() {
    const currentUserUID = firebase.auth.currentUser.uid
 
-   this.requests = await firebase.db.collection('requests').get();
-   this.currentUser = await firebase.db.collection('users').doc(currentUserUID).get();
+   // this.requests = await firebase.db.collection('requests').get();
+   this.currentUser = firebase.db.collection('users').doc(currentUserUID).get();
+
 },
-// firestore: {
-//    requests: db.collection('requests')
-// },
+firestore: {
+   requests: firebase.db.collection('requests')
+},
 created() {
-    // this unbinds any previously bound reference
-    this.$bind('requests', firebase.db.collection('requests')).then(requests => {
-      this.requests === requests
-      // todos are ready to be used
-      // if it contained any reference to other document or collection, the
-      // promise will wait for those references to be fetched as well
+  const currentUserUID = firebase.auth.currentUser.uid
 
-      // you can unbind a property anytime you want
-      // this will be done automatically when the component is destroyed
-      // this.$unbind('requests')
-    })
+    // // this unbinds any previously bound reference
+    // this.$bind('requests', firebase.db.collection('requests')).then(requests => {
+    //   this.requests === requests
+    //   // todos are ready to be used
+    //   // if it contained any reference to other document or collection, the
+    //   // promise will wait for those references to be fetched as well
+    //
+    //   // you can unbind a property anytime you want
+    //   // this will be done automatically when the component is destroyed
+    //   // this.$unbind('requests')
+    // })
 
-    const currentUserUID = firebase.auth.currentUser.uid
+      this.$bind('currentUser', firebase.db.collection('users').doc(currentUserUID)).then(currentUser => {
+         this.currentUser === currentUser
+      //   // todos are ready to be used
+      //   // if it contained any reference to other document or collection, the
+      //   // promise will wait for those references to be fetched as well
+      //
+      //   // you can unbind a property anytime you want
+      //   // this will be done automatically when the component is destroyed
+      //   // this.$unbind('requests')
+      })
 
-   this.$bind('currentUser', firebase.db.collection('users').doc(currentUserUID)).then(currentUser => {
-      this.currentUser === currentUser
-      console.log(currentUser.isTeacher)
-
-   //   // todos are ready to be used
-   //   // if it contained any reference to other document or collection, the
-   //   // promise will wait for those references to be fetched as well
-   //
-   //   // you can unbind a property anytime you want
-   //   // this will be done automatically when the component is destroyed
-   //   // this.$unbind('requests')
-   })
   },
 methods: {
    addRequest: function () {
