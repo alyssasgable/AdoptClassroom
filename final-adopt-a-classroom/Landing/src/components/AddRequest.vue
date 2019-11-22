@@ -134,6 +134,7 @@ export default {
                  description: this.form.description,
                  time_posted: Date(),
                  grade: this.form.grade,
+                 subject: this.form.grade,
                  requestedDate: this.form.requestedDate,
                  deadline: this.form.deadline
               }).then( () => {

@@ -8,7 +8,7 @@
 
                         <div class="section-title-border margin-t-20"></div>
                         <br>
-                        <router-link to="add-request">
+                        <router-link to="add-request" v-if="currentUser.isTeacher">
                            <button type="button" class="btn btn-custom btn-block">Add Request</button>
                         </router-link>
                     </div>
@@ -20,11 +20,18 @@
                                <!-- <img src="https://placekitten.com/800/533" class="img-fluid" alt=""> -->
                                <div>
                                   <h5 class="mt-4 text-muted">{{ request.author_name }}</h5>
-                                  <h2 class="mt-3"><a href="" class="blog-title"> {{ request.title }}</a></h2>
-                                  <h5 class="mt-4 text-muted">Date Posted: {{moment(request.time_posted).format('MM-DD-YYYY')}}</h5>
-                                  <p class="text-muted">{{ request.description }}</p>
+                                  <h5 class="mt-4 text-muted">{{ request.subject }}</h5>
+                                  <h5 class="mt-4 text-muted">{{ request.grade }}</h5>
 
-                                     <div class="mt-3">
+                                  <h2 class="mt-3"><a href="" class="blog-title"> {{ request.title }}</a></h2>
+
+                                  <h5 class="mt-4">Posted: {{moment(request.time_posted).format('MM-DD-YYYY')}}</h5>
+                                  <br/>
+                                  <p class="text-muted">{{ request.description }}</p>
+                                  <h5 class="mt-4">Requested Date:</h5><p class="text-muted"> {{moment(request.requestedDate).format('MM-DD-YYYY')}}</p>
+                                  <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
+
+                                     <div class="mt-3" v-if="!currentUser.isTeacher">
                                           <a class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                                           </a>
 
@@ -53,11 +60,15 @@ export default {
   },
   data() {
    return {
-      requests: []
+      requests: [],
+      currentUser: {}
 }
 },
 async mounted() {
+   const currentUserUID = firebase.auth.currentUser.uid
+
    this.requests = await firebase.db.collection('requests').get();
+   this.currentUser = await firebase.db.collection('users').doc(currentUserUID).get();
 },
 // firestore: {
 //    requests: db.collection('requests')
@@ -74,6 +85,21 @@ created() {
       // this will be done automatically when the component is destroyed
       // this.$unbind('requests')
     })
+
+    const currentUserUID = firebase.auth.currentUser.uid
+
+   this.$bind('currentUser', firebase.db.collection('users').doc(currentUserUID)).then(currentUser => {
+      this.currentUser === currentUser
+      console.log(currentUser.isTeacher)
+
+   //   // todos are ready to be used
+   //   // if it contained any reference to other document or collection, the
+   //   // promise will wait for those references to be fetched as well
+   //
+   //   // you can unbind a property anytime you want
+   //   // this will be done automatically when the component is destroyed
+   //   // this.$unbind('requests')
+   })
   },
 methods: {
    addRequest: function () {
