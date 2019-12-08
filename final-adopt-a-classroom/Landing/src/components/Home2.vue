@@ -1,8 +1,10 @@
 <template>
     <div id="home1">
-        <navbar></navbar>
+        <!-- <navbar></navbar> -->
 
         <hero-section2></hero-section2>
+
+        <about></about>
 
         <services></services>
 
@@ -20,7 +22,7 @@
 
 <script>
 "use strict";
-import Navbar from './Elements/Navbar.vue'
+// import Navbar from './Elements/Navbar.vue'
 import HeroSection2 from './Sections/HeroSection2.vue'
 import Services from './Sections/Services.vue'
 import About from './Sections/About.vue'
@@ -40,7 +42,7 @@ import Switcher from './Elements/Switcher.vue'
 export default {
   name: 'Home',
   components: {
-    Navbar,
+    // Navbar,
     HeroSection2,
     Services,
     About,

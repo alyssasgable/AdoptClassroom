@@ -9,7 +9,7 @@
                             <div class="col-lg-8 offset-lg-2 text-white text-center">
                                 <img src="@/assets/logo.png" width="100%" height="60%" alt="Adopt A Classroom Logo">
                                 <h1 class="home-title">Community Outreach For Reinforcing Education</h1>
-                                <p class="padding-t-15 home-desc">Connecting schools, volunteers, and companies in the Montgomery, Alabama area to support, inspire, and create community and learning oppurtunities.</p>
+                                <p class="padding-t-15 home-desc">Connecting schools, volunteers, and organizations in the Montgomery, Alabama area to support, inspire, and create community and learning oppurtunities.</p>
                                 <!-- <p class="play-shadow margin-t-30 margin-l-r-auto"><a href="//vimeo.com/99025203" class="play-btn video-play-icon"><i class="mdi mdi-play text-center"></i></a></p> -->
                             </div>
                         </div>

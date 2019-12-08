@@ -12,8 +12,8 @@
                     <div class="col-lg-4 margin-t-20">
                         <div class="services-box text-center hover-effect">
                             <i class="pe-7s-plus text-custom"></i>
-                            <h4 class="padding-t-15">Post Workshop Requests</h4>
-                            <p class="padding-t-15 text-muted">Teachers will be able to post requests for workshops for their students.</p>
+                            <h4 class="padding-t-15">Post Requests</h4>
+                            <p class="padding-t-15 text-muted">Teachers will be able to post requests for their classroom or students.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 margin-t-20">

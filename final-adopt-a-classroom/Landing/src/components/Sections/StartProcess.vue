@@ -6,7 +6,7 @@
                     <div class="col-lg-8 offset-lg-2">
                         <h1 class="section-title text-center">The Process</h1>
                         <div class="section-title-border margin-t-20"></div>
-                        <p class="section-subtitle text-muted text-center font-secondary padding-t-30">In an ideal world this website wouldn’t exist, a client would acknowledge the importance of having web copy before the design starts.</p>
+                        <!-- <p class="section-subtitle text-muted text-center font-secondary padding-t-30">In an ideal world this website wouldn’t exist, a client would acknowledge the importance of having web copy before the design starts.</p> -->
                     </div>
                 </div>
                 <div class="row">

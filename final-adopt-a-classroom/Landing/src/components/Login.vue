@@ -76,7 +76,7 @@ methods: {
       firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password).then(
          () => {
             alert("You are signed in!")
-            this.$router.replace('home');
+            this.$router.replace('requests');
          },
          (err) => {
             alert("Oops. " + err.message);

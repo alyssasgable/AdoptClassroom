@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+import { store } from './store'
+
 import router from './router'
 import App from './App.vue'
 import Login from '@/components/Login.vue'
@@ -6,6 +9,8 @@ import Signup from '@/components/Signup'
 import ForgotPassword from '@/components/ForgotPassword'
 import Home2 from '@/components/Home2'
 import Home from '@/components/Home'
+import Requests from '@/components/Sections/Request'
+import Profile from '@/components/Profile'
 import Home4 from '@/components/Home4'
 import Home5 from '@/components/Home5'
 import Home6 from '@/components/Home6'
@@ -39,6 +44,7 @@ Vue.config.productionTip = false
 import { firestorePlugin } from 'vuefire'
 
 Vue.use(firestorePlugin)
+Vue.use(Vuex)
 
 Vue.prototype.moment = moment
 
@@ -50,7 +56,8 @@ const routes = {
     '/login': Login,
     '/register': Signup,
     '/forgot-password': ForgotPassword,
-    '/home': Home,
+    '/requests': Requests,
+    '/profile': Profile,
     '/home-4': Home4,
     '/home-5': Home5,
     '/home-6': Home6,

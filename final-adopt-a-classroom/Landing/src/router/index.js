@@ -6,6 +6,9 @@ import ForgotPassword from '@/components/ForgotPassword'
 import Home2 from '@/components/Home2'
 import Home from '@/components/Home'
 import AddRequest from '@/components/AddRequest'
+import Profile from '@/components/Profile'
+import Requests from '@/components/Sections/Request'
+
 
 import firebase from 'firebase'
 
@@ -14,7 +17,8 @@ Vue.use(VueRouter)
 const routes = [
         {
             path: "/",
-            component: Home2
+            component: Home2,
+            name: "/"
         },
         {
             path: "/welcome",
@@ -22,9 +26,9 @@ const routes = [
             component: Home2
         },
         {
-            path: "/home",
-            name: "Home",
-            component: Home,
+            path: "/requests",
+            name: "Requests",
+            component: Requests,
             meta: {
               requiresAuth: true
             }
@@ -36,6 +40,14 @@ const routes = [
            meta: {
              requiresAuth: true
            }
+        },
+        {
+            path: '/profile',
+            name: 'Profile',
+            component: Profile,
+            meta: {
+             requiresAuth: true
+            }
         },
         {
             path: '/login',
@@ -55,7 +67,9 @@ const routes = [
     ]
 
 const router = new VueRouter({
-  routes
+   mode: 'history',
+   base: process.env.BASE_URL,
+   routes
 })
 
 router.beforeEach((to, from, next) => {
@@ -63,7 +77,7 @@ router.beforeEach((to, from, next) => {
    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
    if (requiresAuth && !currentUser) next('/login')
-   else if (!requiresAuth && currentUser) next('/home')
+   else if (!requiresAuth && currentUser) next('/requests')
    else next()
 })
 

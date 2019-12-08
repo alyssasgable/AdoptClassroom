@@ -1,6 +1,5 @@
 <template>
     <div id="home1">
-        <navbar></navbar>
 
         <Request></Request>
 
@@ -11,7 +10,6 @@
 <script>
 "use strict";
 
-import Navbar from './Elements/Navbar2.vue'
 import HeroSection from './Sections/HeroSection.vue'
 import Services from './Sections/Services.vue'
 import About from './Sections/About.vue'
@@ -34,7 +32,6 @@ import Switcher from './Elements/Switcher.vue'
 export default {
   name: 'Home',
   components: {
-    Navbar,
     HeroSection,
     Services,
     About,
