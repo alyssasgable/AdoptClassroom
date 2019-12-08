@@ -32,15 +32,16 @@
                         <a class="nav-link">Login</a>
                         </li>
                         </router-link>
+                        <router-link to="/register">
+                           <li class="nav-item">
+
+                        <a class="nav-link">Register</a>
+</li>
+                        </router-link>
                     </ul>
                     <div class="nav-button ml-auto">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                              <router-link to="/login">
-<a class="nav-link">                                       Register</a>
-                                </button>
-                              </router-link>
-                            </li>
+
                             <li>
                                <button type="button" @click="logout()" class="btn btn-custom navbar-btn btn-rounded waves-effect waves-light">
                                        Logout

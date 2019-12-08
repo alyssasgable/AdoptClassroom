@@ -36,7 +36,7 @@
                                   <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
 
                                      <div class="mt-3" v-if="!currentUser.isTeacher">
-                                          <a class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                                          <a @click="acceptRequest(request.id)" class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                                           </a>
                                      </div>
 
@@ -107,7 +107,19 @@ created() {
 methods: {
    addRequest: function () {
       this.$router.replace('add-request');
-   }
+   },
+   acceptRequest: function (docRef) {
+      const currentUserUID = firebase.auth.currentUser.uid
+
+      firebase.db.collection('requests').doc(docRef).update({
+         acceptedBy: currentUserUID
+   }).then( () => {
+      alert("You have successfully accepted this request! The teacher has been notified with your contact information and you will receive an email shortly.")
+   },
+   err => {
+      alert('Oops. ' + err.message);
+   });
+}
 }
 }
 

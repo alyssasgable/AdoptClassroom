@@ -73,8 +73,9 @@
                         <!-- end row -->
 
                         <div class="row margin-t-30">
-                           <h3 class="font-weight-bold"><a href="/" class="text-light text-uppercase account-pages-logo">My Requests</a></h3>
-<br>
+                           <h3 v-if="user.isTeacher" class="font-weight-bold"><a href="/" class="text-light text-uppercase account-pages-logo">My Requests</a></h3>
+                           <h3 v-else class="font-weight-bold"><a href="/" class="text-light text-uppercase account-pages-logo">Accepted Requests</a></h3>
+
                                <div v-for="(request, idx) in requests" :key="idx" class="col-lg-4" >
                                   <div class="blog-box margin-t-30 hover-effect">
                                        <!-- <img src="https://placekitten.com/800/533" class="img-fluid" alt=""> -->
@@ -92,8 +93,31 @@
                                           <h5 class="mt-4">Requested Date:</h5><p class="text-muted"> {{moment(request.requestedDate).format('MM-DD-YYYY')}}</p>
                                           <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
                                        </div>
-                                       <a @click="deleteRequest(request.id)" class="read-btn">Delete Request <i class="mdi mdi-minus-circle"></i>
+                                       <a v-if="user.isTeacher" @click="deleteRequest(request.id)" class="read-btn">Delete Request <i class="mdi mdi-minus-circle"></i>
                                        </a>
+
+                                  </div>
+                               </div>
+                               <div v-if="!user.isTeacher" v-for="(request, idx) in acceptedRequests" :key="idx" class="col-lg-4" >
+                                  <div class="blog-box margin-t-30 hover-effect">
+                                      <!-- <img src="https://placekitten.com/800/533" class="img-fluid" alt=""> -->
+                                      <div>
+
+                                         <h5 class="mt-4 text-muted">{{ request.author_name }}</h5>
+                                         <h5 class="mt-4 text-muted">{{ request.subject }}</h5>
+                                         <h5 class="mt-4 text-muted">{{ request.grade }}</h5>
+
+                                         <h2 class="mt-3"><a href="" class="blog-title"> {{ request.title }}</a></h2>
+
+                                         <h5 class="mt-4">Posted: {{moment(request.time_posted).format('MM-DD-YYYY')}}</h5>
+                                         <br/>
+                                         <p class="text-muted">{{ request.description }}</p>
+                                         <h5 class="mt-4">Requested Date:</h5><p class="text-muted"> {{moment(request.requestedDate).format('MM-DD-YYYY')}}</p>
+                                         <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
+                                      </div>
+                                      <a v-if="user.isTeacher" @click="deleteRequest(request.id)" class="read-btn">Delete Request <i class="mdi mdi-minus-circle"></i>
+                                      </a>
+
                                   </div>
                                </div>
                         </div>
@@ -117,19 +141,19 @@ export default {
   },
   data () {
     return {
-       isTeacher: true,
        user: {
           email: '',
           password: '',
           name: '',
           number: '',
-          isTeacher: true,
+          isTeacher: false,
           school: '',
           subject: '',
           company: '',
           skills: ''
        },
-       requests: []
+       requests: [],
+       acceptedRequests: []
     }
   },
   async mounted() {
@@ -141,10 +165,13 @@ export default {
   },
   firestore () {
     const userId = firebase.auth().currentUser.uid
+
      return {
          user: firebase.firestore().collection('users').doc(userId),
-        requests: firebase.firestore().collection("requests")
-                 .where("author_id", "==", userId)
+         requests: firebase.firestore().collection("requests")
+                    .where("author_id", "==", userId),
+         acceptedRequests: firebase.firestore().collection("requests")
+                    .where("acceptedBy", "==", userId)
      }
   },
   methods: {
@@ -180,7 +207,6 @@ export default {
 <style scoped>
 
 .profile {
-   margin-top: 10%;
    height: 100vh;
 }
 </style>

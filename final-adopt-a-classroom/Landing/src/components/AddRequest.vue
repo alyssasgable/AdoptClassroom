@@ -136,7 +136,8 @@ export default {
                  grade: this.form.grade,
                  subject: this.form.subject,
                  requestedDate: this.form.requestedDate,
-                 deadline: this.form.deadline
+                 deadline: this.form.deadline,
+                 acceptedBy: ''
               }).then( () => {
                  alert("You're request has been addded successfully!")
                  this.$router.replace('home')
