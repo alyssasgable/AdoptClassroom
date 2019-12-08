@@ -71,11 +71,15 @@
                             <!-- end col -->
                         </div>
                         <!-- end row -->
+
                         <div class="row margin-t-30">
+                           <h3 class="font-weight-bold"><a href="/" class="text-light text-uppercase account-pages-logo">My Requests</a></h3>
+<br>
                                <div v-for="(request, idx) in requests" :key="idx" class="col-lg-4" >
                                   <div class="blog-box margin-t-30 hover-effect">
                                        <!-- <img src="https://placekitten.com/800/533" class="img-fluid" alt=""> -->
                                        <div>
+
                                           <h5 class="mt-4 text-muted">{{ request.author_name }}</h5>
                                           <h5 class="mt-4 text-muted">{{ request.subject }}</h5>
                                           <h5 class="mt-4 text-muted">{{ request.grade }}</h5>
@@ -88,6 +92,8 @@
                                           <h5 class="mt-4">Requested Date:</h5><p class="text-muted"> {{moment(request.requestedDate).format('MM-DD-YYYY')}}</p>
                                           <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
                                        </div>
+                                       <a @click="deleteRequest(request.id)" class="read-btn">Delete Request <i class="mdi mdi-minus-circle"></i>
+                                       </a>
                                   </div>
                                </div>
                         </div>
@@ -137,8 +143,8 @@ export default {
     const userId = firebase.auth().currentUser.uid
      return {
          user: firebase.firestore().collection('users').doc(userId),
-        // requests: firebase.db.collection("requests")
-        //          .where("author_id", "==", userId)
+        requests: firebase.firestore().collection("requests")
+                 .where("author_id", "==", userId)
      }
   },
   methods: {
@@ -161,14 +167,20 @@ export default {
                  alert("Your profile has been updated successfully!");
               })
 }
-}}
+},
+   deleteRequest: function(docRef) {
+      firebase.firestore().collection('requests').doc(docRef).delete()
+      alert('Your request has been deleted!')
+   }
+}
 }
 
 </script>
 
 <style scoped>
 
-.signUp {
+.profile {
+   margin-top: 10%;
    height: 100vh;
 }
 </style>
