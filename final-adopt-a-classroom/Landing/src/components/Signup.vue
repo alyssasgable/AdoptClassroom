@@ -137,7 +137,7 @@ export default {
                  skills: this.form.skills
               }).then( () => {
                  alert("You're account has been created successfully!")
-                 this.$router.replace('home')
+                 this.$router.replace('requests')
               },
               err => {
                  alert('Oops. ' + err.message);
