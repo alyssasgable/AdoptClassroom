@@ -27,16 +27,15 @@
                             <a class="nav-link">Profile</a>
                         </li>
                         </router-link>
-                        <router-link to="/login">
+                        <router-link to="login">
                         <li class="nav-item">
                         <a class="nav-link">Login</a>
                         </li>
                         </router-link>
-                        <router-link to="/register">
+                        <router-link to="register">
                            <li class="nav-item">
-
                         <a class="nav-link">Register</a>
-</li>
+                        </li>
                         </router-link>
                     </ul>
                     <div class="nav-button ml-auto">

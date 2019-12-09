@@ -36,7 +36,7 @@
                                   <h5 class="mt-4">Deadline Date: </h5><p class="text-muted">{{moment(request.deadline).format('MM-DD-YYYY')}}</p>
 
                                      <div class="mt-3" v-if="!currentUser.isTeacher">
-                                          <a @click="acceptRequest(request.id)" class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                                          <a @click="acceptRequest(request)" class="read-btn">Accept Request <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                                           </a>
                                      </div>
 
@@ -51,6 +51,8 @@
 
 <script>
 const firebase = require('@/firebase.js');
+import emailjs from 'emailjs-com';
+
 // import { db } from 'firebase';
 // import RequestCard from '../Elements/RequestCard'
 
@@ -108,17 +110,32 @@ methods: {
    addRequest: function () {
       this.$router.replace('add-request');
    },
-   acceptRequest: function (docRef) {
+   acceptRequest: function (acceptedRequest) {
       const currentUserUID = firebase.auth.currentUser.uid
 
-      firebase.db.collection('requests').doc(docRef).update({
+      firebase.db.collection('requests').doc(acceptedRequest.id).update({
          acceptedBy: currentUserUID
    }).then( () => {
-      alert("You have successfully accepted this request! The teacher has been notified with your contact information and you will receive an email shortly.")
-   },
-   err => {
-      alert('Oops. ' + err.message);
-   });
+      var template_params = {
+         "teacherEmail": acceptedRequest.author_email,
+         "volunteerEmail": this.currentUser.email,
+         "requestTitle": acceptedRequest.title,
+         "requestDate": acceptedRequest.requestedDate,
+         "requestDescription": acceptedRequest.description,
+         "requestGrade": acceptedRequest.grade,
+         "volunteerName": this.currentUser.name,
+         "volunteerNumber": this.currentUser.number
+      }
+
+      var service_id = "default_service";
+      var template_id = "acceptedrequest";
+      var user_id = 'user_SLg0QxEJZAU5Vvvlv6JLV';
+
+      emailjs.send(service_id, template_id, template_params, user_id);
+
+      })
+
+alert('You have successfully accepted a request! An email has been sent to the you and teacher.')
 }
 }
 }

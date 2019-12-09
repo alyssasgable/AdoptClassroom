@@ -124,12 +124,11 @@ export default {
      addRequest: function() {
         const currentUserUID = firebase.auth.currentUser.uid
 
-        console.log(this.currentUserData)
-
             firebase.db.collection('requests').add({
                  author_id: currentUserUID,
                  title: this.form.title,
                  author_name: this.currentUserData.name,
+                 author_email: this.currentUserData.email,
                  contactNumber: this.form.number,
                  description: this.form.description,
                  time_posted: Date(),
@@ -140,7 +139,7 @@ export default {
                  acceptedBy: ''
               }).then( () => {
                  alert("You're request has been addded successfully!")
-                 this.$router.replace('home')
+                 this.$router.replace('requests')
               },
               err => {
                  alert('Oops. ' + err.message);
