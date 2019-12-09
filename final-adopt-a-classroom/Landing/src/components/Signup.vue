@@ -10,7 +10,7 @@
                                 <div class="card account-card">
                                     <div class="card-body">
                                         <div class="text-center mt-3">
-                                            <h3 class="font-weight-bold"><a href="/" class="text-dark text-uppercase account-pages-logo">Adopt A Classroom</a></h3>
+                                            <h3 class="font-weight-bold"><a href="/" class="text-dark text-uppercase account-pages-logo">AppleCORE</a></h3>
                                             <p class="text-muted">Sign up for a new Account</p>
                                         </div>
                                         <div class="p-3">

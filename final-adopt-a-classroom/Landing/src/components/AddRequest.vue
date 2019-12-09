@@ -31,7 +31,7 @@
 
                                                 <div class="form-group">
                                                    <label for="skills">Request Description</label>
-                                                   <p class="text-muted">Please describe what type of workshop you would like to have or what things you want your students to learn.</p>
+                                                   <p class="text-muted">Please describe what type of volunteer activity you would like to have or what things you want your students to learn.</p>
                                                    <textarea type="skills" v-model="form.description" class="form-control" id="description" placeholder="Request Description"></textarea>
                                                 </div>
 
