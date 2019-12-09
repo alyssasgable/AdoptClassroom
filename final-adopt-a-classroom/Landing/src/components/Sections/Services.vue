@@ -20,7 +20,7 @@
                         <div class="services-box text-center hover-effect">
                             <i class="pe-7s-light text-custom"></i>
                             <h4 class="padding-t-15">Browse Requests</h4>
-                            <p class="padding-t-15 text-muted">Volunteers will be able to browse through workshop requests.</p>
+                            <p class="padding-t-15 text-muted">Volunteers will be able to browse through activity requests.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 margin-t-20">

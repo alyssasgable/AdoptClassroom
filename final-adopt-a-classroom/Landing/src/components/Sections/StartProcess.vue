@@ -29,7 +29,7 @@
                         <div class="text-center process-box">
                             <i class="pe-7s-note2 text-custom"></i>
                             <h4 class="padding-t-15">Teachers Create Requests</h4>
-                            <p class="text-muted">Teachers will be able to create requests for workshop ideas and availability dates.</p>
+                            <p class="text-muted">Teachers will be able to create requests for volunteer activity ideas and availability dates.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
