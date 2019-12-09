@@ -120,17 +120,17 @@ export default {
   methods: {
      signUp: function() {
 
-        if (this.form.isTeacher && !this.form.email.endsWith('@mps.k12.al.us') ) {
+        if (this.isTeacher && !this.form.email.endsWith('@mps.k12.al.us') ) {
            alert("Sign up with your @mps.k12.al.us email address. Please contact us if your school domain is not available.")
         } else {
            firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password).then(
               cred => {
 
-              return db.collection('users').doc(cred.user.uid).set({
+              return firebase.firestore().collection('users').doc(cred.user.uid).set({
                  email: this.form.email,
                  name: this.form.name,
                  number: this.form.number,
-                 isTeacher: this.form.isTeacher,
+                 isTeacher: this.isTeacher,
                  school: this.form.school,
                  subject: this.form.subject,
                  company: this.form.company,
